@@ -2,7 +2,7 @@
 
 ## Project setup
 
-:raised_eyebrow:
+:kiss:
 
 ```
 npm install
