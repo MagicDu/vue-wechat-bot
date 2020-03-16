@@ -5,7 +5,7 @@
             <headerbar style="overflow:visible;"></headerbar>
         </div>
   </header>
-    <app-main />
+    <app-main style="padding-top:45px"/>
     <footer class="app-footer _line-fine">
         <div class="_effect " :class="{'_effect--50':decline}">
             <navbar />

@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <dl v-for="item in index_nav" routerlink="item.path" :key="item.index">
-      <dt class="iconfont" :class="item.iconClass">
+    <dl v-for="item in index_nav"  :key="item.index">
+      <dt class="iconfont" :class="item.iconClass" @click="dispatchTab(item.path)">
         <i v-if="item.hint.count" v-text="item.hint | get_prompt " :class="'_news-'+item.hint.type"></i>
       </dt>
       <dd v-text="item.text"></dd>
@@ -20,7 +20,7 @@ export default {
         {
           index: 0,
           path: {
-            path: "/chat"
+            path: "/chats"
           },
           hint: { type: "count", count: 0 }, //count,dot
           iconClass: "icon-wechat",
@@ -29,7 +29,7 @@ export default {
         {
           index: 1,
           path: {
-            path: "/contact"
+            path: "/contacts"
           },
 
           hint: { type: "count", count: 0 },
@@ -39,7 +39,7 @@ export default {
         {
           index: 2,
           path: {
-            path: "/find"
+            path: "/discover"
           },
           hint: { type: "dot", count: 99 },
           iconClass: "icon-find",
@@ -64,6 +64,9 @@ export default {
   methods: {
      get_prompt(hint) {
             return hint.count
+        },
+        dispatchTab(path){
+         this.$router.push(path)
         }
   }
 };
