@@ -1,6 +1,9 @@
 # vue-wechat-bot
 
 ## Project setup
+
+:raised_eyebrow:
+
 ```
 npm install
 ```
