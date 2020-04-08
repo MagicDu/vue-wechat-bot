@@ -8,14 +8,14 @@
     <app-main style="padding-top:45px"/>
     <footer class="app-footer _line-fine">
         <div class="_effect " :class="{'_effect--50':decline}">
-            <navbar />
+            <VantNavBar />
         </div>
     </footer>  
   </div>
 </template>
 
 <script>
-import { AppMain,Navbar,Headerbar } from "./components";
+import { AppMain,VantNavBar,Headerbar } from "./components";
 export default {
   data(){
     return {
@@ -26,7 +26,7 @@ export default {
   name: "Layout",
   components: {
     AppMain,
-    Navbar,
+    VantNavBar,
     Headerbar
   }
 };

@@ -9,6 +9,10 @@ const constantRoutes = [{
     component: () => import('@/components/HelloWorld')
 },
 {
+  path: '/detail',
+  component: () => import('@/views/chat/chatdetail/chatdetail')
+},
+{
     path: '/dashboard',
     component: Layout,
     redirect: '/dashboard',

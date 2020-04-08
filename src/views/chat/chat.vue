@@ -11,6 +11,7 @@
         :key="item.id"
         transition="chat-item"
       >
+      <router-link :to="detail">
         <div
           class="info"
           :class="{
@@ -64,6 +65,7 @@
           </div>
           <div class="handle-del">删除</div>
         </div>
+         </router-link>
       </li>
     </ul>
   </div>
@@ -74,6 +76,7 @@
 export default {
   data() {
     return {
+      detail:"/detail",
       decline: false,
       currentIndex: -1, //列表item处在左划状态
       isTouchSwipe: false, //验证是否处于左划状态
