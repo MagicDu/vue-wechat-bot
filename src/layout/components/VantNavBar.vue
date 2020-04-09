@@ -22,7 +22,7 @@ export default {
             path: "/chats"
           },
           hint: { type: "count", count: 0 }, //count,dot
-          iconClass: "chat-o",
+          iconClass: "chat",
           text: "微信"
         },
         {
@@ -32,7 +32,7 @@ export default {
           },
 
           hint: { type: "count", count: 0 },
-          iconClass: "friends-o",
+          iconClass: "friends",
           text: "通讯录"
         },
         {
@@ -41,7 +41,7 @@ export default {
             path: "/discover"
           },
           hint: { type: "dot", count: 99 },
-          iconClass: "fire-o",
+          iconClass: "fire",
           text: "发现"
         },
         {
@@ -50,7 +50,7 @@ export default {
             path: "/me"
           },
           hint: { type: null, count: "" },
-          iconClass: "contact",
+          iconClass: "manager",
           text: "我"
         }
       ]

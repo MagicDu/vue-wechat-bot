@@ -1,30 +1,88 @@
 <template>
-  <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-    <van-cell
-      v-for="item in list"
-      :key="item.id"
-      :title="item.base.nickname"
-      :value="item.chatBaseModel.endTimeStr"
-      :label="item.chatBaseModel.endChatTxt"
-      size="large"
-    >
-           <template slot="title">
-              <van-icon slot="icon" size="20" :name="item.base.iconSrc" style="padding-right: 8px;" />
-              <span class="custom-title">{{item.base.nickname}}</span>
-            </template>
-    </van-cell>
-  </van-list>
+  <div
+    class="_full_inner _scroll _effect component-chat"
+    :class="{ '_effect--30': decline }"
+  >
+    <!-- <search-bar></search-bar> -->
+    <ul class="wechat-list">
+      <li
+        class="item _line-fine"
+        v-for="item in wechat_list"
+        :key="item.id"
+        transition="chat-item"
+      >
+      <router-link :to="detail">
+        <div
+          class="info"
+          :class="{
+            current: currentIndex == $index
+          }"
+          v-touch-options:swipe="{ direction: 'horizontal' }"
+        >
+          <div class="ico-box">
+            <i
+              :class="item.chatConfigModel"
+              :text="item.chatBaseModel"
+              v-show="item.chatBaseModel"
+            ></i>
+            <div class="ico">
+              <img :src="item.base.iconSrc" alt="pic" />
+            </div>
+          </div>
+          <div class="desc">
+            <div
+              class="desc-time"
+              v-text="item.chatBaseModel.endTimeStr"
+            ></div>
+            <div class="desc-title" v-text="item.base.name"></div>
+            <div class="desc-message">
+              <div
+                class="desc-mute iconfont icon-mute"
+                :title="item.chatConfigModel.newsMute | json"
+                v-show="item.chatConfigModel.newsMute"
+              ></div>
+              <span
+                :title="item.base.type"
+                v-show="item.base.type === 'friends'"
+                v-text="item.chatBaseModel.endChatAuth + ':'"
+              ></span>
+              <span v-text="item.chatBaseModel.endChatTxt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="handle">
+          <div
+            class="handle-unread"
+            v-show="item.chatBaseModel.newsUnreadCount == 0"
+          >
+            标为未读
+          </div>
+          <div
+            class="handle-unread"
+            v-show="item.chatBaseModel.newsUnreadCount > 0"
+          >
+            标为已读
+          </div>
+          <div class="handle-del">删除</div>
+        </div>
+         </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 <script>
+// import searchBar from "components/search-bar.vue";
+
 export default {
   data() {
     return {
-      detail: "/detail",
-      loading: false,
-      finished: true,
-      list: [
+      detail:"/detail",
+      decline: false,
+      currentIndex: -1, //列表item处在左划状态
+      isTouchSwipe: false, //验证是否处于左划状态
+      wechat_list: [
         {
-          id: "1",
+          id:"1",
           base: {
             id: 1,
             name: "杨涛",
@@ -74,7 +132,7 @@ export default {
           }
         },
         {
-          id: "2",
+           id:"2",
           base: {
             id: 2,
             name: "微信群01",
@@ -129,7 +187,7 @@ export default {
           }
         },
         {
-          id: "3",
+           id:"3",
           base: {
             id: 1,
             name: "稀土圈",
@@ -204,7 +262,7 @@ export default {
           }
         },
         {
-          id: "4",
+           id:"4",
           base: {
             id: 1,
             name: "饿了么",
@@ -279,15 +337,78 @@ export default {
       ]
     };
   },
-  events: {},
-  methods: {
-    onLoad() {
-      // 异步更新数据
+  events: {
+    "route-pipe"(_decline) {
+      this.decline = _decline;
+      this.$parent.$emit("route-pipe", _decline);
     }
   },
-  filters: {},
-  components: {},
-  created() {}
+  methods: {
+    info_touchstart(_index) {
+      console.log(_index)
+      this.currentIndex = -1;
+    },
+    info_tap(_index) {
+      var index = _index;
+      if (index >= 0 && !this.isTouchSwipe) {
+        this.set_chat(this.wechat_list[index]);
+        this.$router.go({
+          path: "/chat/dialogue"
+        });
+      }
+      this.isTouchSwipe = false;
+    },
+    info_swipeleft(_index) {
+      event.stopPropagation();
+      if (!this.isTouchSwipe) {
+        this.isTouchSwipe = true;
+        this.currentIndex = _index;
+      } else {
+        this.isTouchSwipe = false;
+      }
+    },
+    computed_unRead_count() {
+      //计算未读数量
+      let sum = 0;
+      console.log(this.wechat_list);
+      this.wechat_list.forEach(({ chatBaseModel, chatConfigModel }, index) => {
+        console.log(index)
+        if (!chatConfigModel.newsMute) {
+          let count = chatBaseModel.newsUnreadCount;
+          sum += count;
+        }
+      });
+      this.set_chat_count(sum);
+    },
+    delete_item(index) {
+      this.delete_news(index, () => {
+        this.currentIndex = -1;
+        this.computed_unRead_count();
+      });
+    }
+  },
+  filters: {
+    f_news(obj, attr) {
+      var aaa = obj || {};
+      let newsClass = aaa.newsMute ? "_news-dot" : "_news-count";
+      let newsText = !aaa.newsMute ? aaa.newsUnreadCount : "";
+      let newsShow = aaa.newsUnreadCount > 0;
+      let o = {
+        nclass: newsClass,
+        ntext: newsText,
+        nshow: newsShow
+      };
+      return o[attr];
+    }
+  },
+  components: {
+    //searchBar
+  },
+  created() {
+    // this.get_menu_wechat_list(() => {
+    //   this.computed_unRead_count();
+    // });
+  }
 };
 </script>
 <style scoped></style>
