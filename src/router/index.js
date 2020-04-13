@@ -9,7 +9,7 @@ const constantRoutes = [{
     component: () => import('@/components/HelloWorld')
 },
 {
-  path: '/detail',
+  path: '/detail/:id',
   component: () => import('@/views/chat/chatdetail/chatdetail')
 },
 {

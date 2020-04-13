@@ -14,7 +14,7 @@ export default {
   props: {},
   data() {
     return {
-        active:1,
+        active:0,
       index_nav: [
         {
           index: 0,

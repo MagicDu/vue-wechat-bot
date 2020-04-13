@@ -1,17 +1,21 @@
 <template>
-<button></button>
+<button>{{id}}</button>
 </template>
 
 <script>
 export default {
  data(){
      return{
-         name:"hello"
+         name:"hello",
+         id:""
      }
  },
   components: {
     
   },
+  mounted:function(){
+    this.id=  this.$route.params.id
+  }
 }
 </script>
 

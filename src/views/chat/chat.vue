@@ -1,21 +1,25 @@
 <template>
   <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-    <van-cell
-      v-for="item in list"
-      :key="item.id"
-      :title="item.base.nickname"
-      :value="item.chatBaseModel.endTimeStr"
-      :label="item.chatBaseModel.endChatTxt"
-      size="large"
-    >
-           <template slot="title">
-              <van-icon slot="icon" size="20" :name="item.base.iconSrc" style="padding-right: 8px;" />
-              <span class="custom-title">{{item.base.nickname}}</span>
-            </template>
+    <van-cell v-for="item in list" :key="item.id" size="large" @click="toDetail(item.id)">
+      <template #title>
+        <div class="chat-right">
+          <div>
+            <img :src="item.base.iconSrc" class="avatar" />
+          </div>
+          <div class="content-right">
+            <div class="content-time-wrap">
+              <div class="content-title">{{item.base.name}}</div>
+              <div class="content-time">{{item.chatBaseModel.endTimeStr|formatDate}}</div>
+            </div>
+            <div class="content-tip">{{item.chatBaseModel.endChatTxt}}</div>
+          </div>
+        </div>
+      </template>
     </van-cell>
   </van-list>
 </template>
 <script>
+import moment from 'moment'
 export default {
   data() {
     return {
@@ -45,7 +49,7 @@ export default {
           //对话列表基本项
           chatBaseModel: {
             newsUnreadCount: 1,
-            endTimeStr: 1472632586443,
+            endTimeStr: 1586594186000,
             endChatAuth: "杨涛",
             endChatTxt: "晚上打球?"
           },
@@ -92,7 +96,7 @@ export default {
           },
           chatBaseModel: {
             newsUnreadCount: 1,
-            endTimeStr: 1472632586443,
+            endTimeStr: 1586766986000,
             endChatAuth: "领导",
             endChatTxt: "大家下班的时候记得锁好门"
           },
@@ -150,7 +154,7 @@ export default {
           //对话列表基本项
           chatBaseModel: {
             newsUnreadCount: 11,
-            endTimeStr: 1472632586443,
+            endTimeStr: 1586766986000,
             endChatAuth: "",
             endChatTxt: "挖掘最优质的互联网技术"
           },
@@ -280,14 +284,65 @@ export default {
     };
   },
   events: {},
+  filters: {
+    formatDate(value) {
+      let now = moment();
+      let past=moment(value)
+      let diff = now.diff(past, 'days')
+      if(diff==0){
+          return past.format('HH:mm')
+      }
+      if(diff>=1&&diff<=3){
+          return diff+'天前'
+      }
+     if(diff>3){
+        return past.format('MM/DD/YY')
+     }
+    }
+  },
   methods: {
     onLoad() {
       // 异步更新数据
+    },
+    toDetail(id){
+      this.$router.push({path:'/detail/'+id})
     }
   },
-  filters: {},
   components: {},
   created() {}
 };
 </script>
-<style scoped></style>
+<style scoped>
+.avatar {
+  border-radius: 5px;
+  height: 45px;
+  widows: 45px;
+}
+.chat-right {
+  display: flex;
+  flex-direction: row;
+}
+.content-right {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 15px;
+}
+.content-title {
+  font-size: 20px;
+  font-family: "Microsoft YaHei";
+}
+.content-tip {
+  color: darkgrey;
+}
+.content-time {
+  color: darkgrey;
+}
+.content-time-wrap{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+	position: relative;
+}
+</style>
