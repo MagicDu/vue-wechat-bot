@@ -10,11 +10,11 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "VantNavBar",
+  name: "TabBar",
   props: {},
   data() {
     return {
-        active:0,
+      active:0,
       index_nav: [
         {
           index: 0,

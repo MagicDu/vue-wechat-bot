@@ -1,120 +1,39 @@
 <template>
-  <nav>
-    <dl v-for="item in index_nav"  :key="item.index">
-      <dt class="iconfont" :class="item.iconClass" @click="dispatchTab(item.path)">
-        <i v-if="item.hint.count" v-text="item.hint | get_prompt " :class="'_news-'+item.hint.type"></i>
-      </dt>
-      <dd v-text="item.text"></dd>
-    </dl>
-  </nav>
+  <div id="NavBar">
+    <van-nav-bar :title="title" :left-arrow="isleftarrow" @click-left="onClickLeft" />
+  </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
-
 export default {
-  name:"Navbar",
-  props: {},
-  data() {
-    return {
-      index_nav: [
-        {
-          index: 0,
-          path: {
-            path: "/chats"
-          },
-          hint: { type: "count", count: 0 }, //count,dot
-          iconClass: "icon-wechat",
-          text: "微信"
-        },
-        {
-          index: 1,
-          path: {
-            path: "/contacts"
-          },
-
-          hint: { type: "count", count: 0 },
-          iconClass: "icon-contact",
-          text: "通讯录"
-        },
-        {
-          index: 2,
-          path: {
-            path: "/discover"
-          },
-          hint: { type: "dot", count: 99 },
-          iconClass: "icon-find",
-          text: "发现"
-        },
-        {
-          index: 3,
-          path: {
-            path: "/me"
-          },
-          hint: { type: null, count: "" },
-          iconClass: "icon-me",
-          text: "我"
-        }
-      ]
-    };
-  },
-
-  computed: {
-    ...mapGetters(["sidebar", "avatar"])
-  },
+  props: ["title", "isleftarrow"],
   methods: {
-     get_prompt(hint) {
-            return hint.count
-        },
-        dispatchTab(path){
-         this.$router.push(path)
-        }
+    onClickLeft() {
+      this.$router.go(-1);
+    }
   }
 };
 </script>
 <style scoped>
-nav {
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-  height: 50px;
-  padding-top: 8px;
-  background: #f9f9f9;
-  font-size: 12px;
+#NavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 46px;
+  line-height: 46px;
+  width:100%;
+  z-index: 100;
 }
-
-nav dl {
-  user-select: none;
-  -webkit-user-select: none;
-  flex-grow: 1;
-  text-align: center;
-  line-height: 1;
+.van-nav-bar{
+  color: white;
+  font-size: 18px!important;
+  background: rgb(247, 247, 247);
+  /* 设置导航栏的渐变色 */
+  /* background: linear-gradient(to right, #000, #1b0e0b)!important;
+  background: -webkit-linear-gradient(to right, #ff2e29, #fe6e49)!important; */
+  border:0;
 }
-
-nav dl.v-link-active dl,
-nav dl.v-link-active dt {
-  color: #0bb908;
-}
-
-nav dt {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  margin: 0 auto;
-  font-size: 28px;
-  color: #797979;
-  margin-bottom: 2px;
-}
-
-nav dd {
-  color: #929292;
-  transform-origin: 50% 0;
-  transform: scale(0.9);
-}
-
-nav ._news-dot {
-  right: -2px;
-  top: -3px;
-  width: 11px;
-  height: 11px;
+.van-hairline--bottom::after {
+     /* 去除导航栏底部的白色横线 */
+    border-bottom-width: 0px!important;
 }
 </style>
