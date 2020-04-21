@@ -26,11 +26,16 @@ body,
 #app {
     font-family: PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica;
     height: 100%;
-    overflow: hidden;
+    overflow-x:scroll;
+    white-space: nowrap;
 }
 
 * {
     box-sizing: border-box;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
 
 *:before,
