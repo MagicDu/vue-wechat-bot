@@ -5,6 +5,7 @@
 </template>
 <script>
 export default {
+  name:"NavBar",
   props: ["title", "isleftarrow"],
   methods: {
     onClickLeft() {

@@ -7,7 +7,7 @@ import store from './store'
 // 移动端框架 vant 配置
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
+import '@/assets/css/base.less'
 Vue.use(Vant);
 
 Vue.config.productionTip = false
