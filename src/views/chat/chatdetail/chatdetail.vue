@@ -13,7 +13,7 @@
                         :src="item.avatar" />
                     <!-- 消息体 -->
                     <div class="message">
-                        <div class="mesage-name lh24">{{ item.facutlyName }}</div>
+                        <!-- <div class="mesage-name lh24">{{ item.userName }}</div> -->
                         <div class="bubble bd4">
                                 <div v-html="item.content" class="wang-editor"></div>
                         </div>
@@ -22,14 +22,11 @@
       </div>
     </van-list>
   </van-pull-refresh>
-   <van-submit-bar button-text="回复" class="my-vant-bar wang-editor"
+   <van-submit-bar button-text="发送" class="my-vant-bar wang-editor"
         :class="showImg ? 'fixed-bar' : ''"
         @submit="onSubmit"
        >
         <!--  -->
-        <div class="left mgr10" @click.stop="show">
-            <img src="@/assets/images/biaoq.png" alt="">
-        </div>
         <van-cell-group>
             <!-- <vue-editor id="my-editor"
                 class="my-editor" 
@@ -43,10 +40,16 @@
                 ></vue-editor> -->
              <van-field v-model="message"
                 type="textarea"
-                placeholder="请输入内容"
+                placeholder=""
                 rows="1"
                 autosize/> 
         </van-cell-group>
+                <div class="left mgr10" @click.stop="show">
+            <img src="@/assets/images/biaoq.png" alt="">
+        </div>
+         <div class="left mgr10" @click.stop="show">
+           <img src="@/assets/images/biaoq.png" alt="">
+        </div>
     </van-submit-bar>
     </div>
 </template>
@@ -60,16 +63,34 @@ export default {
         {
           id:"1",
           avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
-          content:"hello",
+          content:"哈哈哈哈哈哈哈哈哈",
           userType:1,
-          createTime:"2019/09/18"
+          createTime:"2019/09/18",
+          userName:"李倩"
         },
        {
           id:"2",
-          avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
-          content:"hi",
+          avatar:"https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1898582417,1582081952&fm=26&gp=0.jpg",
+          content:"呵呵呵呵呵呵呵",
           userType:2,
-          createTime:"2019/09/18"
+          createTime:"2019/09/18",
+        userName:"杨涛"
+        },
+         {
+          id:"3",
+          avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
+          content:"是吗",
+          userType:1,
+          createTime:"2019/09/18",
+          userName:"李倩"
+        },
+       {
+          id:"4",
+          avatar:"https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1898582417,1582081952&fm=26&gp=0.jpg",
+          content:"是啊",
+          userType:2,
+          createTime:"2019/09/18",
+        userName:"杨涛"
         },
       ],
       loading: false,
@@ -180,14 +201,14 @@ export default {
     }
 
     .bubble {
-        background: #eb6100;
-        color: #fff;
+        background: #9EEA6A;
+        color: #000;
         margin: 0 5px 0 20px;
     }
 
     .bubble:before {
         border-width: 8px 0 8px 8px !important;
-        border-color: transparent transparent transparent #eb6100 !important;
+        border-color: transparent transparent transparent #9EEA6A !important;
         left: 100%;
     }
 
@@ -198,7 +219,7 @@ export default {
 
 // 底部回复
 .my-vant-bar {
-    background: #e8e8e8;
+    background: #F5F5F5;
     padding: 5px;
     box-sizing: border-box;
     transition: all .3 ease-in;
@@ -217,7 +238,7 @@ export default {
         }
     }
     .van-button--danger {
-        background: #eb6100;
+        background: #9EEA6A;
         border: 0;
     }
     .van-submit-bar__button {
@@ -225,6 +246,7 @@ export default {
         height: 40px;
         line-height: 40px;
         border-radius: 4px;
+        color: black;
     }
     .left {
         width: 27px;
