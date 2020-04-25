@@ -1,25 +1,18 @@
 <template>
   <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-    <van-cell v-for="item in list" :key="item.id" size="large" @click="toDetail(item.id)">
-      <template #title>
-        <div class="chat-right">
-          <div>
-            <img :src="item.base.iconSrc" class="avatar" />
-          </div>
-          <div class="content-right">
-            <div class="content-time-wrap">
-              <div class="content-title">{{item.base.name}}</div>
-              <div class="content-time">{{item.chatBaseModel.endTimeStr|formatDate}}</div>
-            </div>
-            <div class="content-tip">{{item.chatBaseModel.endChatTxt}}</div>
-          </div>
-        </div>
-      </template>
-    </van-cell>
+    <MyVantCell v-for="item in list" :key="item.id"
+    @click.native="toDetail(item.id)" 
+    :isMsg="true"
+    :iconSrc="item.base.iconSrc"
+    :content_title="item.base.name"
+    :time="item.chatBaseModel.endTimeStr|formatDate"
+    :content="item.chatBaseModel.endChatTxt"
+    />
   </van-list>
 </template>
 <script>
 import moment from 'moment'
+import MyVantCell from '@/components/MyVantCell'
 export default {
   data() {
     return {
@@ -1320,41 +1313,11 @@ export default {
       this.$router.push({path:'/chats/detail/'+id})
     }
   },
-  components: {},
+  components: {
+    MyVantCell
+  },
   created() {}
 };
 </script>
 <style scoped>
-.avatar {
-  border-radius: 5px;
-  height: 45px;
-  widows: 45px;
-}
-.chat-right {
-  display: flex;
-  flex-direction: row;
-}
-.content-right {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-left: 15px;
-}
-.content-title {
-  font-size: 20px;
-  font-family: "Microsoft YaHei";
-}
-.content-tip {
-  color: darkgrey;
-}
-.content-time {
-  color: darkgrey;
-}
-.content-time-wrap{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-	position: relative;
-}
 </style>
