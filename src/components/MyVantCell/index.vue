@@ -1,5 +1,5 @@
 <template>
-    <van-cell>
+    <van-cell :is-link="isLink" center>
       <template #title>
         <div class="chat-right">
           <div>
@@ -22,14 +22,14 @@
 <script>
 export default {
  name:"MyVantCell",
-   props: ["content_title", "time","content","iconSrc","isMsg"]
+   props: ["content_title", "time","content","iconSrc","isMsg","isLink"]
 };
 </script>
 <style scoped>
 .avatar {
   border-radius: 5px;
-  height: 45px;
-  widows: 45px;
+  height: 35px;
+  widows: 35px;
 }
 .chat-right {
   display: flex;
@@ -45,14 +45,16 @@ export default {
   padding-left: 15px;
 }
 .content-title {
-  font-size: 20px;
+  font-size: 13px;
   font-family: "Microsoft YaHei";
 }
 .content-tip {
   color: darkgrey;
+  font-size: 8px;
 }
 .content-time {
   color: darkgrey;
+  font-size: 8px;
 }
 .content-time-wrap{
   display: flex;

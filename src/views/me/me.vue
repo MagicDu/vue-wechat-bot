@@ -1,91 +1,56 @@
 <template>
-    <div class="_full_inner _effect component-me" :class="{'_effect--30':decline}">
-        <div class="weui_cells weui_cells_access me-line">
-            <a class="weui_cell " href="javascript:;">
-                <div class="weui_cell_hd">
-                    <img src="//ad-gold-cdn.xitu.io/1499914112624921aaaa7e1a76cf937757f564538142e.jpg">
-                </div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>lqq</p>
-                    <p><span>微信号:&nbsp;&nbsp;</span><span>lqq</span></p>
-                </div>
-                <div class="weui_cell_ft">
-                    <img class="_align-middle" style="height:25px;" src="../../assets/images/chat-info-qr.png">
-                </div>
-            </a>
-        </div>
-        <!-- flag -->
-        <div class="weui_cells weui_cells_access">
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_more-my-album.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>相册</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_more-my-favorites.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>收藏</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_more-my-bank-card.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>钱包</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_my-card-package-icon.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>卡包</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-        </div>
-        <!-- flag -->
-        <div class="weui_cells weui_cells_access">
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_more-expression.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>表情</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-        </div>
-        <!-- flag -->
-        <div class="weui_cells weui_cells_access">
-            <a class="weui_cell" href="javascript:;">
-                <div class="weui_cell_hd"><img src="../../assets/images/me_more-setting.png" alt="" style="width:20px;margin-right:5px;display:block"></div>
-                <div class="weui_cell_bd weui_cell_primary">
-                    <p>设置</p>
-                </div>
-                <div class="weui_cell_ft"></div>
-            </a>
-        </div>
-    </div>
-    <!-- <router-view transition="cover"></router-view> -->
+  <div>
+    <MyVantCell
+      :iconSrc="avatarImage"
+      :isMsg="true"
+      :isLink="true"
+      content_title="布鲁斯"
+      content="微信号：bickcess"
+    />
+    <van-cell-group title=" ">
+      <MyVantCell :iconSrc="picImage" :isMsg="false" :isLink="true" content_title="相册" />
+      <MyVantCell :iconSrc="collectImage" :isMsg="false" :isLink="true" content_title="收藏" />
+      <MyVantCell :iconSrc="walletImage" :isMsg="false" :isLink="true" content_title="钱包" />
+      <MyVantCell :iconSrc="cardImage" :isMsg="false" :isLink="true" content_title="卡包" />
+    </van-cell-group>
+    <van-cell-group title=" ">
+      <MyVantCell :iconSrc="emojiImage" :isMsg="false" :isLink="true" content_title="表情" />
+      <MyVantCell :iconSrc="settingImage" :isMsg="false" :isLink="true" content_title="设置" />
+    </van-cell-group>
+  </div>
+  <!-- <router-view transition="cover"></router-view> -->
 </template>
 <script>
+import MyVantCell from "@/components/MyVantCell";
+import avatarImage from "@/assets/images/ava-d.jpeg";
+import picImage from "@/assets/images/me_more-my-album.png";
+import collectImage from "@/assets/images/me_more-my-favorites.png";
+import walletImage from "@/assets/images/me_more-my-bank-card.png";
+import cardImage from "@/assets/images/me_my-card-package-icon.png";
+import emojiImage from "@/assets/images/me_more-expression.png";
+import settingImage from "@/assets/images/me_more-setting.png";
+
 export default {
-    data() {
-            return {
-                decline: false
-            }
-        },
-        events: {
-            'route-pipe' (_decline) {
-                this.decline = _decline
-                this.$parent.$emit('route-pipe', _decline)
-            }
-        }
-}
+  data() {
+    return {
+      picImage: picImage,
+      collectImage: collectImage,
+      walletImage: walletImage,
+      cardImage: cardImage,
+      emojiImage: emojiImage,
+      settingImage: settingImage,
+      avatarImage: avatarImage,
+      decline: false
+    };
+  },
+  components: {
+    MyVantCell
+  }
+};
 </script>
 <style scoped>
 .component-me {
-    padding-top: 1px;
-    background-color: #efeff4;
+  padding-top: 1px;
+  background-color: #efeff4;
 }
 </style>

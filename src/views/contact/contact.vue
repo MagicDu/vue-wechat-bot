@@ -20,6 +20,13 @@
     :isMsg="false"
     content_title="公众号"
     />
+     <van-cell-group title="联系人">
+    <MyVantCell v-for="item in list" :key="item.id" 
+    :isMsg="false"
+    :iconSrc="item.avatar"
+    :content_title="item.nickname"
+    />
+     </van-cell-group>
   </van-list>
 </template>
 <script>
@@ -28,6 +35,7 @@ import addContactImg from '@/assets/images/contact_top-friend-notify.png'
 import groupChatImage from '@/assets/images/contact_top-addgroup.png'
 import tagImage from '@/assets/images/contact_top-tag.png'
 import officialImage from '@/assets/images/contact_top-offical.png'
+import avatarImage from '@/assets/images/ava-d.jpeg'
 
 export default {
   data() {
@@ -40,7 +48,41 @@ export default {
       loading: false,
       finished: false,
       list:[
-
+          {
+            id:"1",
+            nickname:"杨鱼儿",
+            avatar:avatarImage,
+          },
+           {
+            id:"2",
+            nickname:"刘华",
+            avatar:avatarImage,
+          },
+          {
+            id:"3",
+            nickname:"张素素",
+            avatar:avatarImage,
+          },
+          {
+            id:"4",
+            nickname:"孙宝儿",
+            avatar:avatarImage,
+          },
+           {
+            id:"5",
+            nickname:"刘希儿",
+            avatar:avatarImage,
+          },
+          {
+            id:"6",
+            nickname:"草花儿",
+            avatar:avatarImage,
+          },
+           {
+            id:"6",
+            nickname:"张程儿",
+            avatar:avatarImage,
+          }
       ]
     };
   },
