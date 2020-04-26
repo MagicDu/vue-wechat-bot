@@ -5,8 +5,8 @@ Vue.use(Router)
 import Layout from '@/layout'
 // 设置常量路由
 const constantRoutes = [{
-    path: '/hello',
-    component: () => import('@/components/HelloWorld')
+    path: '/login',
+    component: () => import('@/views/login/login')
 },
 {
   path: '/detail/:id',
