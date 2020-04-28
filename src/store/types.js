@@ -1,0 +1,58 @@
+// app.js
+export const TOGGLE_DEVICE = 'TOGGLE_DEVICE'
+export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR'
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+export const SET_SIZE = 'SET_SIZE'
+// setting.js
+export const CHANGE_SETTING = 'CHANGE_SETTING'
+/* export const BREADCRUMB = 'BREADCRUMB'
+export const TAGSVIEW = 'TAGSVIEW'
+export const FIXEDHEADER = 'FIXEDHEADER'
+export const SIDEBARLOGO = 'SIDEBARLOGO' */
+// tagsView.js
+export const ADD_VISITED_VIEW = 'ADD_VISITED_VIEW'
+export const ADD_CACHED_VIEW = 'ADD_CACHED_VIEW'
+export const DEL_VISITED_VIEW = 'DEL_VISITED_VIEW'
+export const DEL_CACHED_VIEW = 'DEL_CACHED_VIEW'
+export const DEL_OTHERS_VISITED_VIEWS = 'DEL_OTHERS_VISITED_VIEWS'
+export const DEL_OTHERS_CACHED_VIEWS = 'DEL_OTHERS_CACHED_VIEWS'
+export const DEL_ALL_VISITED_VIEWS = 'DEL_ALL_VISITED_VIEWS'
+export const DEL_ALL_CACHED_VIEWS = 'DEL_ALL_CACHED_VIEWS'
+export const UPDATE_VISITED_VIEW = 'UPDATE_VISITED_VIEW'
+// permission.js
+export const SET_ROUTES = 'SET_ROUTES'
+// errorLog.js
+export const ADD_ERROR_LOG = 'ADD_ERROR_LOG'
+// user.js
+export const SET_TOKEN = 'SET_TOKEN'
+export const SET_PERMISSIONS = 'SET_PERMISSIONS'
+export const SET_ROLES = 'SET_ROLES'
+export const SET_SYSUSER = 'SET_SYSUSER'
+export const SET_ADDRESSDATA = 'SET_ADDRESSDATA'
+export const SET_ISONELOGIN = 'SET_ISONELOGIN'
+export const SET_ROLESLIST = 'SET_ROLESLIST'
+export const SET_THIRDUSER = 'SET_THIRDUSER'
+export const SET_ROLESNOW = 'SET_ROLESNOW'
+
+// 设置头像 add  by  duziqiang  2019/08/27
+export const SET_AVATAR = 'SET_AVATAR'
+
+// resourceLibrary.js
+export const SET_FIRSTRESOURCEID = 'SET_FIRSTRESOURCEID'
+// missionCenter.JS
+export const SET_FINDSYSDEPTLISTDETAIL = 'SET_FINDSYSDEPTLISTDETAIL'
+export const SET_FINDJUESELIST = 'SET_FINDJUESELIST'
+export const SET_FACULTYIDLIST = 'SET_FACULTYIDLIST'
+
+//classGrade.js
+export const SET_FINDCLASSLIST = 'SET_FINDCLASSLIST'
+export const SET_FINDGRADELIST = 'SET_FINDGRADELIST'
+
+// consult.js
+export const SET_PROBLEMTYPELIST = 'SET_PROBLEMTYPELIST'
+
+// newsList
+export const SET_MESSAGELIST = 'SET_MESSAGELIST'
+export const DELETE_MESSAGELIST = 'DELETE_MESSAGELIST'
+//schoolInfo
+export const SET_SCHOOLINFO = 'SET_SCHOOLINFO'

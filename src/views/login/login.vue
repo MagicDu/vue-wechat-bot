@@ -12,13 +12,13 @@
   <van-field
     v-model="password"
     type="password"
-    name="passowrd"
+    name="password"
     label="密码"
     placeholder="密码"
     :rules="[{ required: true, message: '请填写密码' }]"
   />
   <div style="margin: 16px;">
-    <van-button round block type="info" native-type="submit">
+    <van-button round block type="info" native-type="submit" :disabled="disabled">
       提交
     </van-button>
   </div>
@@ -28,10 +28,12 @@
 
 <script>
 import logoImg from '@/assets/logo.png'
+
 export default {
  data(){
      return {
          logoImg:logoImg,
+         disabled:false,
          username:"",
          password:""
      }
@@ -39,7 +41,15 @@ export default {
  methods:{
       onSubmit(values) {
       console.log('submit', values);
-      this.$router.push('/chats')
+      this.disabled=true
+       this.$store.dispatch('user/login', values)
+                            .then(() => {
+                                this.$router.push("/chats")
+                                this.disabled = false
+                            })
+                            .catch(() => {
+                                this.disabled = false
+                            })
     },
  }
 }

@@ -3,6 +3,14 @@ import Router from 'vue-router'
 Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
+
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+import { getToken } from '@/utils/auth' // get token from cookie
+
+const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+
 // 设置常量路由
 const constantRoutes = [{
     path: '/login',
@@ -84,4 +92,27 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
+// 添加异步路由accessRoutes 需要定义筛选 fliter
+// 路由访问重定向
+
+router.beforeEach(async (to, from, next) => {
+	const hasToken = getToken()
+	if (hasToken) {
+    NProgress.start()
+		if (to.path === '/login') {
+			next({ path: '/chats' })
+			NProgress.done()
+		} else {
+				next()
+				NProgress.done()
+		}
+	} else  {
+		if (whiteList.indexOf(to.path) !== -1 || (to.meta && to.meta.white)) {
+			next()
+		} else {
+			next('/login')
+			NProgress.done()
+		}
+	} 
+})
 export default router
