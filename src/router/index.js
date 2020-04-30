@@ -19,7 +19,11 @@ const constantRoutes = [{
 {
   path: '/detail/:id',
   component: () => import('@/views/chat/chatdetail/chatdetail')
-},
+  },
+  {
+    path: '/map/',
+    component: () => import('@/components/HelloWorld')
+  },
 {
     path: '/dashboard',
     component: Layout,

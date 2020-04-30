@@ -1,36 +1,49 @@
 <template>
-  <div>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-  </div>
+<div>
+   <baidu-map
+    v-bind:style="mapStyle"
+    class="bmView"
+    :scroll-wheel-zoom="true"
+    :center="location"
+    :zoom="zoom"
+    ak="WSrX4bCfgcjTfhWNCwvfI1ZnQnfZDxFW&amp;ver=1"
+  />
+  <bm-view style="width: 100%; height:400px;"></bm-view>
+</div>
 </template>
 
 <script>
+import {BaiduMap,BmView} from 'vue-baidu-map'
 export default {
   name: 'HelloWorld',
-  created:function(){
-    console.log('create hello')
+ data(){
+   return {
+      location: {
+        lng: 116.404,
+        lat: 39.915
+      },
+      zoom: 12.8,
+       mapStyle: {
+          width: '100%',
+          height:  window.innerHeight-window.innerHeight*0.2+ 'px'
+    },
+   }
+
+ },
+ created(){
+   
+ },
+  components:{
+    BaiduMap,
+    BmView
   }
+  
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.map{
+  height: calc(10% + 10px);;
 }
 </style>
