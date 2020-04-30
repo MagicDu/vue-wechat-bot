@@ -125,7 +125,21 @@ export default {
       // this.loading = true;
       // this.onLoad();
     },
-    onSubmit(){},
+    onSubmit(){
+        if(this.message!=null||this.message.trim()!=""){
+            this.$store.getters.STAFF_UPDATE.send(this.message)
+            let newMsg={
+                id:"5",
+                avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
+                content: this.message,
+                userType:1,
+                createTime:"2019/09/18",
+                userName:"杨涛"
+            }
+            this.list.push(newMsg)
+            this.message=""
+        }
+    },
     mounted: function() {
       this.id = this.$route.params.id;
       //  this.$emit('changeTitle','hello');
