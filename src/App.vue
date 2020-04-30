@@ -7,6 +7,14 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods:{
+    createWebsocket(){
+      this.$store.dispatch('websocket/STAFF_WEBSOCKET')
+    }
+  },
+  created(){
+    this.createWebsocket()
+  }
 }
 </script>
