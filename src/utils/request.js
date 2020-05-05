@@ -55,6 +55,8 @@ axios.interceptors.response.use(
   },
   error => {
     const errMsg = error.toString()
+    console.log(error.response)
+
     let data = error.response ? error.response.data : '';
     let code = data.code
     if (!data) {

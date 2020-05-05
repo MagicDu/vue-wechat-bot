@@ -1,12 +1,12 @@
 // 测试环境 -- 测试服 打test包
 const test = {
-    host: 'http://192.168.10.241:2019' 
+    host: 'http://localhost:9096' 
   
 }
  
  // 生产环境 -- 正式服 打包 build 时候
 const production = {
-   host: 'http://192.168.10.241:2019' 
+   host: 'http://localhost:9096' 
 
 }
 

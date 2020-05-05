@@ -125,8 +125,7 @@ const actions = {
     console.log(password)
     return new Promise((resolve, reject) => {
       userLogin({ username: username.trim(), password: password }).then(response => {
-        const access_token = response.access_token
-
+        const access_token = response.data
         commit(types.SET_TOKEN, access_token)
         setToken(access_token)
         resolve(userInfo)

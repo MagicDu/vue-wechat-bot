@@ -127,7 +127,11 @@ export default {
     },
     onSubmit(){
         if(this.message!=null||this.message.trim()!=""){
-            this.$store.getters.STAFF_UPDATE.send(this.message)
+            let msg={
+                "content":this.message,
+                "receiveUser":"1"
+            }
+            this.$store.getters.STAFF_UPDATE.send(JSON.stringify(msg))
             let newMsg={
                 id:"5",
                 avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",

@@ -1,18 +1,12 @@
 import http from '@/utils/request'
 
 export const userLogin = data => {
-    var grantType = 'password'
-    var clientId = 'cloud'
-    var clientSecret = 'cloud'
     var param = {
         username: data.username,
-        password: data.password,
-        client_id: clientId,
-        client_secret: clientSecret,
-        grant_type: grantType
+        password: data.password
     }
 
-    return http.post('/auth/oauth/token', {}, param)
+    return http.post('/user/login/', {}, param)
 }
 
 export const getInfo = param => {
