@@ -129,7 +129,7 @@ export default {
         if(this.message!=null||this.message.trim()!=""){
             let msg={
                 "content":this.message,
-                "receiveUser":"1"
+                "receiveUser":"2e793281-faf3-4822-8f21-233885240981"
             }
             this.$store.getters.STAFF_UPDATE.send(JSON.stringify(msg))
             let newMsg={

@@ -45,6 +45,7 @@ export default {
        this.$store.dispatch('user/login', values)
                             .then(() => {
                                 this.$router.push("/chats")
+                                 this.$store.dispatch('websocket/STAFF_WEBSOCKET')
                                 this.disabled = false
                             })
                             .catch(() => {
