@@ -1,5 +1,5 @@
 const getters = {
-  access_token: state => state.user.access_token,
+  token: state => state.user.token,
   STAFF_UPDATE: state=> state.websocket.websock
   }
   export default getters
