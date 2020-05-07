@@ -2,7 +2,7 @@ module.exports = {
     title: 'bot-ui',
     codeText: window.location.protocol + '//' + window.location.hostname + '/',
     // websocket请求地址
-    websocketApi: 'ws://192.168.1.107:9096/websocket',
+    websocketApi: 'ws://192.168.10.153:9096/websocket',
     /**
      * @type { String}
      * @description 整体logo风格，图片名后缀

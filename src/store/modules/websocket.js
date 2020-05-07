@@ -16,7 +16,6 @@ const actions = {
     STAFF_WEBSOCKET ({ commit }) {
       let token = getToken()
     if (token=="undefined"||token == null) {
-          console.log("error")
           return
         }
       const wsuri = websocketApi+"/"+token

@@ -122,7 +122,6 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo
-    console.log(password)
     return new Promise((resolve, reject) => {
       userLogin({ username: username.trim(), password: password }).then(response => {
         const access_token = response.data

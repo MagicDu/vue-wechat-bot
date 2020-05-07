@@ -25,7 +25,6 @@ axios.interceptors.request.use(
     } else {
       promiseArr[config.url] = cancel
     }
-    console.log('token',store.getters.token)
     if (store.getters.token) {
       config.headers.common['Authorization'] = 'Bearer ' + store.getters.token // 让每个请求携带自定义token 请根据实际情况自行修改
     }

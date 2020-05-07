@@ -4,10 +4,10 @@
     <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <div v-for="item in list" :key="item.id" :title="item.content">
         <div class='text-center lh20 mes-time'>
-                    <span class='fs13'>{{ item.createTime }}</span>
+                    <span class='fs13'>{{ item.createDate }}</span>
         </div>
             <div class="message-item"
-                    :class="(item.userType == '1' ) ? 'right' : ''">
+                    :class="(item.type == 1 ) ? 'right' : ''">
                     <van-image round fit="cover"
                         class="avatar"
                         :src="item.avatar" />
@@ -54,67 +54,28 @@
     </div>
 </template>
 <script>
+import { getChatDetail } from "@/api/chat";
+
 export default {
   data() {
     return {
       showImg: false,
       message:"",
+      id:"",
       list: [
-        {
-          id:"1",
-          avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
-          content:"哈哈哈哈哈哈哈哈哈",
-          userType:1,
-          createTime:"2019/09/18",
-          userName:"李倩"
-        },
-       {
-          id:"2",
-          avatar:"https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1898582417,1582081952&fm=26&gp=0.jpg",
-          content:"呵呵呵呵呵呵呵",
-          userType:2,
-          createTime:"2019/09/18",
-        userName:"杨涛"
-        },
-         {
-          id:"3",
-          avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
-          content:"是吗",
-          userType:1,
-          createTime:"2019/09/18",
-          userName:"李倩"
-        },
-       {
-          id:"4",
-          avatar:"https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1898582417,1582081952&fm=26&gp=0.jpg",
-          content:"是啊",
-          userType:2,
-          createTime:"2019/09/18",
-        userName:"杨涛"
-        },
       ],
       loading: false,
-      finished: true,
+      finished: false,
       refreshing: false
     };
   },
   methods: {
     onLoad() {
-      // setTimeout(() => {
-      //   if (this.refreshing) {
-      //     this.list = [];
-      //     this.refreshing = false;
-      //   }
-
-      //   for (let i = 0; i < 10; i++) {
-      //     this.list.push(this.list.length + 1);
-      //   }
-      //   this.loading = false;
-
-      //   if (this.list.length >= 40) {
-      //     this.finished = true;
-      //   }
-      // }, 1000);
+      getChatDetail(this.id).then(reponse=>{
+          this.list=reponse.data;
+          this.loading = true;
+        this.finished=true;
+      })
     },
     onRefresh() {
       // // 清空列表数据
@@ -129,26 +90,26 @@ export default {
         if(this.message!=null||this.message.trim()!=""){
             let msg={
                 "content":this.message,
-                "receiveUser":"2e793281-faf3-4822-8f21-233885240981"
+                "receiveUser":this.id
             }
             this.$store.getters.STAFF_UPDATE.send(JSON.stringify(msg))
             let newMsg={
                 id:"5",
                 avatar:"http://ad-gold-cdn.xitu.io/14999138688354f1720f589d2d33db77f026bb07c8f67.jpg",
                 content: this.message,
-                userType:1,
-                createTime:"2019/09/18",
+                type:1,
+                createDate:"2019/09/18",
                 userName:"杨涛"
             }
             this.list.push(newMsg)
             this.message=""
         }
     },
+
+  },
     mounted: function() {
-      this.id = this.$route.params.id;
-      //  this.$emit('changeTitle','hello');
+        this.id = this.$route.params.id;
     }
-  }
 };
 </script>
 
