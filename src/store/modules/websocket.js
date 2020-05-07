@@ -28,7 +28,7 @@ const actions = {
         state.websock.send(JSON.stringify({
           'content': true
         }))
-      }, 30000)
+      }, 300000)
     }
 }
 
